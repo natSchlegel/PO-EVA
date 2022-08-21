@@ -18,7 +18,10 @@ def adicionarAmbientes(request):
 
 
 def adicionarPortas(request):
-    ambientes = Ambiente.objects.all()
+    ambienteAnterior = Ambiente.objects.all()
+    ambientePosterior = Ambiente.objects.all()
+    ambiente = Ambiente.objects.all()
+
     template = loader.get_template('index2.html')
-    context = {'ambientes': ambientes}
+    context = {'ambienteAnterior': ambienteAnterior, 'ambientePosterior':ambientePosterior, 'ambiente':ambiente}
     return HttpResponse(template.render(context, request))
