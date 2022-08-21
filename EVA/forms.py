@@ -1,6 +1,7 @@
 from django import forms
 from .models import Ambiente, Porta
 
+
 class AmbienteForm(forms.ModelForm):
     class Meta:
         model = Ambiente
@@ -10,4 +11,4 @@ class AmbienteForm(forms.ModelForm):
 class PortaForm(forms.ModelForm):
     class Meta:
         model = Porta
-        fields = ['nome', 'largura', 'escada'] 
+        fields = ['nome', 'largura', 'escada']
