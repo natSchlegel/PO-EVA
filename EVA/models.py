@@ -4,7 +4,7 @@ class Ambiente(models.Model):
     nome = models.CharField(max_length=20, help_text='Entre o nome do ambiente')
     inicio = models.BooleanField()
     metrosQuadrados = models.FloatField(help_text='Metros quadrados do ambiente')
-    ambientePosterior = models.ForeignKey('Ambiente', on_delete=models.DO_NOTHING)
+    ambientePosterior = models.ForeignKey('Ambiente', null=True,  on_delete=models.DO_NOTHING)
     porta = models.ForeignKey('Porta', on_delete=models.DO_NOTHING)
 
 class Porta(models.Model):
