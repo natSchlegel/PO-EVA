@@ -1,6 +1,6 @@
 #### Crie um DB
 ```
-sudo -u postgres createdb curricular
+sudo -u postgres createdb eva
 ```
 #### Crie um usuário
 ```
