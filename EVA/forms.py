@@ -1,13 +1,13 @@
 from django import forms
-from .models import *
+from .models import Ambiente, Porta
 
 class AmbienteForm(forms.ModelForm):
     class Meta:
         model = Ambiente
-        fields = ['nome', 'porta', 'inicio', 'metrosQuadrados']
+        fields = ['nome', 'metrosQuadrados']
 
 
 class PortaForm(forms.ModelForm):
     class Meta:
         model = Porta
-        fields = ['nome', 'largura', 'escada', 'ambienteAnterior', 'ambientePosterior'] 
+        fields = ['nome', 'largura', 'escada'] 
