@@ -11,4 +11,4 @@ class AmbienteForm(forms.ModelForm):
 class PortaForm(forms.ModelForm):
     class Meta:
         model = Porta
-        fields = ['nome', 'largura', 'escada']
+        fields = ['largura', 'escada']
