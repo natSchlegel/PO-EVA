@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('eva/home', views.adicionarAmbientes, name='adicionarAmbiente'),
     path('eva/portas', views.adicionarPortas, name='adicionarPortas'),
+    path('eva/mostrarportas', views.mostrarPortas, name='mostrarPortas'),
 
 ]

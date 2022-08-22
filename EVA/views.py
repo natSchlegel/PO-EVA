@@ -42,6 +42,14 @@ def adicionarConexao(request):
 
 
 def calcFluxoMaximo():
+        var = '[('
+    for i in conexao:
+
+        var += i.ambienteAnterior.id +' ,' ambientePosterior.id
+
+
+        var = "[(2,1),(3,5)]"
+
     pesos = Conexao.object.peso()
     nos = Conexao.object.nos()
     qtd = Conexao.object.qtd()
