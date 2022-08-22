@@ -19,48 +19,54 @@
         crossorigin="anonymous"></script>
 
 <div class="container">
-    <form method="POST">
-        {% csrf_token %}
-        <h6>Ambiente a(o):</h6>
-        {% for ambientePosterior in ambientePosterior %}
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                       value="option1" name="displayAmbiente">
-                <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
-                    - {{ ambientePosterior.id }}</label>
-            </div>
-        {% endfor %}
-        <h5>Conectado a:</h5>
-        {% for ambientePosterior in ambientePosterior %}
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                       value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
-                    - {{ ambientePosterior.id }}</label>
-            </div>
-        {% endfor %}
-        <div>
-            <label for="exampleFormControlInput1" class="form-label mt-3">Nome Identificador da
-                Porta</label>
-            <input type="name" class="form-control" id="nomeEstabelecimento">
-            <label for="exampleFormControlInput1" class="form-label mt-3">Largura da Porta</label>
-            <input type="number" class="form-control" id="nomeEstabelecimento" {{ formP.largura }}>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Escada
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                       checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                    Rampa
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Confirmar</button>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form method="POST">
+                {% csrf_token %}
+                <h6 class="mt-4">Ambiente:</h6>
+                {% for ambientePosterior in ambientePosterior %}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                               value="option1" name="displayAmbiente">
+                        <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
+                            - {{ ambientePosterior.id }}</label>
+                    </div>
+                {% endfor %}
+                <h6>Conectado a:</h6>
+                {% for ambientePosterior in ambientePosterior %}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                               value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
+                            - {{ ambientePosterior.id }}</label>
+                    </div>
+                {% endfor %}
+                <div>
+                    <label for="exampleFormControlInput1" class="form-label mt-3">Nome Identificador da
+                        Porta</label>
+                    <input type="name" class="form-control" id="nomeEstabelecimento">
+                    <label for="exampleFormControlInput1" class="form-label mt-3">Largura da Porta</label>
+                    <input type="number" class="form-control" id="nomeEstabelecimento" {{ formP.largura }}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Escada
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                               checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Rampa
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Confirmar</button>
+                    <button type="submit" name="Próxima página" class="btn btn-primary mt-4"><a href="/eva/mostrarportas"
+                                                                                                style="text-decoration: none; color:white">Próxima
+                        Página</a></button>
+
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 </body>
 </html>
