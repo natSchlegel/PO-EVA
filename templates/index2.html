@@ -26,19 +26,19 @@
                 <h6 class="mt-4">Ambiente:</h6>
                 {% for ambientePosterior in ambientePosterior %}
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                        <input class="form-check-input" type="radio" id="inlineCheckbox1"
                                value="option1" name="displayAmbiente">
                         <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
-                            - {{ ambientePosterior.id }}</label>
+                        </label>
                     </div>
                 {% endfor %}
                 <h6>Conectado a:</h6>
                 {% for ambientePosterior in ambientePosterior %}
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                        <input class="form-check-input" type="radio" id="inlineCheckbox1"
                                value="option1">
                         <label class="form-check-label" for="inlineCheckbox1">{{ ambientePosterior.nome }}
-                            - {{ ambientePosterior.id }}</label>
+                            </label>
                     </div>
                 {% endfor %}
                 <div>
@@ -47,26 +47,42 @@
                     <input type="name" class="form-control" id="nomeEstabelecimento">
                     <label for="exampleFormControlInput1" class="form-label mt-3">Largura da Porta</label>
                     <input type="number" class="form-control" id="nomeEstabelecimento" {{ formP.largura }}
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Escada
-                        </label>
-                    </div>
-                    <div class="form-check">
+
+                    <div class="form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
                                checked>
                         <label class="form-check-label" for="flexCheckChecked">
                             Rampa
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4">Confirmar</button>
-                    <button type="submit" name="Próxima página" class="btn btn-primary mt-4"><a href="/eva/mostrarportas"
-                                                                                                style="text-decoration: none; color:white">Próxima
-                        Página</a></button>
-
+                    <button type="submit" name="Próxima página" class="btn btn-primary mt-4"><a href="/eva/home" style="text-decoration: none; color:white">Voltar</a></button>
+                    <button type="submit" class="btn btn-primary mt-4">Adicionar Portas</button>
+                    <button type="submit" name="Próxima página" class="btn btn-primary mt-4"><a href="/eva/fluxo" style="text-decoration: none; color:white">Próxima Página</a></button>
                 </div>
             </form>
+
+                <table class="table mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">ID da Porta</th>
+                    <th scope="col">Ambiente Principal</th>
+                    <th scope="col">Ambiente Conectado</th>
+                    <th scope="col">Largura</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for portas in portas %}
+                        <tr>
+                            <th scope="row">{{ portas.id }}</th>
+                            <td>{{ portas.conexao.ambienteAnterior  }}</td>
+                            <td>{{ portas.conexao.ambientePosterior }}</td>
+                            <td>{{ portas.largura }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
 </body>
 </html>

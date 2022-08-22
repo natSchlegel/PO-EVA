@@ -7,6 +7,7 @@ import igraph as ig
 
 
 def adicionarAmbientes(request):
+    ambientes = Ambiente.objects.all()
     if request.method == 'POST':
         formA = AmbienteForm(request.POST)
         formP = PopulacaoForm(request.POST)
@@ -17,11 +18,12 @@ def adicionarAmbientes(request):
     else:
         formA = AmbienteForm()
         formP = PopulacaoForm()
-    context = {'formA': formA, 'formP': formP}
+    context = {'formA': formA, 'formP': formP, 'ambientes':ambientes}
     return render(request, 'index.html', context)
 
 
 def adicionarPortas(request):
+    portas = Porta.objects.all().prefetch_related('conexao')
     ambienteAnterior = Ambiente.objects.all()
     ambientePosterior = Ambiente.objects.all()
     ambiente = Ambiente.objects.all()
@@ -34,7 +36,7 @@ def adicionarPortas(request):
     else:
         formP = PortaForm()
     context = {'ambienteAnterior': ambienteAnterior, 'ambientePosterior': ambientePosterior, 'ambiente': ambiente,
-               'formP': formP}
+               'formP': formP, 'portas':portas}
     return render(request, 'index2.html', context)
 
 
@@ -43,12 +45,6 @@ def adicionarConexao(request):
         formC = ConexaoForm(request.POST)
         if formC.is_valid():
             formC.save()
-
-
-def mostrarPortas(request):
-    portas = Porta.objects.all().prefetch_related('conexao')
-    context = {'portas': portas}
-    return render(request, 'index3.html', context)
 
 
 def calcFluxoMaximo():

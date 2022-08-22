@@ -24,16 +24,7 @@
         <div class="col-8">
             <form class="main mt-4" method="POST">
                 {% csrf_token %}
-                <input type="name" class="form-control" id="nomeEstabelecimento"
-                       placeholder="Nome do Estabelecimento">
-                <label for="exampleFormControlInput1" class="form-label mt-3">Número Máximo de Pessoas
-                    Permitido:</label>
-                <input type="number" class="form-control" id="maxPessoas">
 
-                <small id="emailHelp" class="form-text text-muted">Se você não souber iremos calcular o número
-                    ideal
-                    para você.</small>
-                <hr class="border-2 border-top border-dark">
                 <h5>Adicionar ambientes:</h5>
                 {{ formA.nome.errors }}
                 <input type="name" class="form-control" id="nomeEstabelecimento"
@@ -42,18 +33,29 @@
                 <label for="exampleFormControlInput1" class="form-label mt-3">Metros Quadrados</label>
 
                 <input type="number" class="form-control" id="metrosQuadrados" {{ formA.metrosQuadrados }}
-                <label for="exampleFormControlInput1" class="form-label mt-3">Populacao</label>
+                <label for="exampleFormControlInput1" class="form-label mt-3">População</label>
 
                 <input type="number" class="form-control" id="metrosQuadrados" {{ formP.populacao }}
                 <button type="submit" name="Cadastrar" class="btn btn-primary mt-3">Adicionar Ambiente</button>
-                <button type="submit" name="Próxima página" class="btn btn-primary mt-3"><a href="/eva/portas"
-                                                                                            style="text-decoration: none; color:white">Próxima
-                    Página</a></button>
-
-                <hr class="border-2 mt-3 border-top border-dark">
+                <button type="submit" name="Próxima página" class="btn btn-primary mt-3"><a href="/eva/portas" style="text-decoration: none; color:white">Próxima Página</a></button>
             </form>
 
-
+            <table class="table mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">Nome do Ambiente</th>
+                    <th scope="col">Metros Quadrados</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ambientes in ambientes %}
+                        <tr>
+                            <th scope="row">{{ ambientes.nome }}</th>
+                            <td>{{ ambientes.metrosQuadrados  }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
