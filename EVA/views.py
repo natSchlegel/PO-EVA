@@ -42,24 +42,22 @@ def adicionarConexao(request):
 
 
 def calcFluxoMaximo():
-        var = '[('
-    for i in conexao:
+    nos = []
+    pesos = []
+    qtd = []
+    for x in Conexao.objects.all():
+        nos.append((x.ambienteAnterior, x.ambientePosterior))
+        pesos.append(int(x.peso))
+        qtd.append(int(x.ambienteAnterior))
 
-        var += i.ambienteAnterior.id +' ,' ambientePosterior.id
-
-
-        var = "[(2,1),(3,5)]"
-
-    pesos = Conexao.object.peso()
-    nos = Conexao.object.nos()
-    qtd = Conexao.object.qtd()
+    tamanho = max(qtd)
     g = ig.Graph(
-        qtd, [nos],
+        tamanho, nos,
         directed=True
     )
-    g.es['capacity'] = [pesos]
-    flow = g.maxflow(0, 11, capacity=g.es['capacity'])
-    return flow.value
+    g.es['capacity'] = pesos
+    flow = g.maxflow(0, tamanho-1, capacity=g.es['capacity'])
+    return int(flow.value)
 
 
 def fluxoMaximo(request):

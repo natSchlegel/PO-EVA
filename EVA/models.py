@@ -9,6 +9,6 @@ class Porta(models.Model):
     escada = models.BooleanField(help_text='Marque se tiver escada')
     conexao = models.ForeignKey('Conexao', on_delete=models.ForeignKey, null=True)
 class Conexao(models.Model):
-    ambienteAnterior = models.ForeignKey('Ambiente', null=True,  on_delete=models.DO_NOTHING, related_name='ambienteAnterior')
-    ambientePosterior = models.ForeignKey('Ambiente', null=True,  on_delete=models.DO_NOTHING, related_name='ambientePosterior')
-    peso = models.FloatField()
+    ambienteAnterior = models.IntegerField(null=True)
+    ambientePosterior = models.IntegerField(null=True)
+    peso = models.IntegerField()
