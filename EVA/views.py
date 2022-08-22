@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import AmbienteForm, PortaForm, ConexaoForm
 from .models import Ambiente, Porta, Conexao
+import igraph as ig
 
 
 def adicionarAmbientes(request):
@@ -38,3 +39,21 @@ def adicionarConexao(request):
         formC = ConexaoForm(request.POST)
         if formC.is_valid():
             formC.save()
+
+
+def calcFluxoMaximo():
+    pesos = Conexao.object.peso()
+    nos = Conexao.object.nos()
+    qtd = Conexao.object.qtd()
+    g = ig.Graph(
+        qtd, [nos],
+        directed=True
+    )
+    g.es['capacity'] = [pesos]
+    flow = g.maxflow(0, 11, capacity=g.es['capacity'])
+    return flow.value
+
+
+def fluxoMaximo(request):
+    maxFlow = calcFluxoMaximo()
+    return render(request, 'index3.html', {'maxFlow': maxFlow})
