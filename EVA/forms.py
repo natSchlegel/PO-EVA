@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ambiente, Porta, Conexao
+from .models import Ambiente, Porta, Conexao, Populacao
 
 
 class AmbienteForm(forms.ModelForm):
@@ -18,3 +18,9 @@ class ConexaoForm(forms.ModelForm):
     class Meta:
         model = Conexao
         fields = ['ambientePosterior', 'ambienteAnterior', 'peso']
+
+
+class PopulacaoForm(forms.ModelForm):
+    class Meta:
+        model = Populacao
+        fields = ['populacao']

@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import AmbienteForm, PortaForm, ConexaoForm
-from .models import Ambiente, Porta, Conexao
+from .models import Ambiente, Porta, Conexao, Populacao
 import igraph as ig
 
 
@@ -65,6 +65,13 @@ def calcFluxoMaximo():
     return int(flow.value)
 
 
+def calcTempoEvacucao():
+    pop = Populacao.objects.poopulacao()
+    maxFlow = calcFluxoMaximo()
+    return int(pop / (maxFlow * 6))
+
+
 def fluxoMaximo(request):
     maxFlow = calcFluxoMaximo()
-    return render(request, 'index3.html', {'maxFlow': maxFlow})
+    tempo = calcTempoEvacucao()
+    return render(request, 'index4.html', {'maxFlow': maxFlow}, {'tempo': tempo})

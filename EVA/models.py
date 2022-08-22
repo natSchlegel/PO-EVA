@@ -12,3 +12,7 @@ class Conexao(models.Model):
     ambienteAnterior = models.IntegerField(null=True)
     ambientePosterior = models.IntegerField(null=True)
     peso = models.IntegerField()
+
+
+class Populacao(models.Model):
+    populacao = models.IntegerField(null=True)
