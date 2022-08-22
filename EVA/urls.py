@@ -23,5 +23,6 @@ urlpatterns = [
     path('eva/home', views.adicionarAmbientes, name='adicionarAmbiente'),
     path('eva/portas', views.adicionarPortas, name='adicionarPortas'),
     path('eva/mostrarportas', views.mostrarPortas, name='mostrarPortas'),
+    path('eva/fluxo', views.fluxoMaximo, name='fluxoMaximo')
 
 ]

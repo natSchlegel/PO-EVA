@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from .forms import AmbienteForm, PortaForm, ConexaoForm
+from .forms import AmbienteForm, PortaForm, ConexaoForm, PopulacaoForm
 from .models import Ambiente, Porta, Conexao, Populacao
 import igraph as ig
 
@@ -9,12 +9,16 @@ import igraph as ig
 def adicionarAmbientes(request):
     if request.method == 'POST':
         formA = AmbienteForm(request.POST)
+        formP = PopulacaoForm(request.POST)
         if formA.is_valid():
             formA.save()
+            formP.save()
             return redirect('adicionarAmbiente')
     else:
         formA = AmbienteForm()
-    return render(request, 'index.html', {'formA': formA})
+        formP = PopulacaoForm()
+    context = {'formA': formA, 'formP': formP}
+    return render(request, 'index.html', context)
 
 
 def adicionarPortas(request):
@@ -40,11 +44,12 @@ def adicionarConexao(request):
         if formC.is_valid():
             formC.save()
 
-def mostrarPortas(request):
 
+def mostrarPortas(request):
     portas = Porta.objects.all().prefetch_related('conexao')
     context = {'portas': portas}
     return render(request, 'index3.html', context)
+
 
 def calcFluxoMaximo():
     nos = []
@@ -61,12 +66,16 @@ def calcFluxoMaximo():
         directed=True
     )
     g.es['capacity'] = pesos
-    flow = g.maxflow(0, tamanho-1, capacity=g.es['capacity'])
+    flow = g.maxflow(0, tamanho - 1, capacity=g.es['capacity'])
     return int(flow.value)
 
 
 def calcTempoEvacucao():
-    pop = Populacao.objects.poopulacao()
+    aux = []
+    for i in Populacao.objects.all():
+        aux.append(i.populacao)
+
+    pop = aux[-1]
     maxFlow = calcFluxoMaximo()
     return int(pop / (maxFlow * 6))
 
@@ -74,4 +83,6 @@ def calcTempoEvacucao():
 def fluxoMaximo(request):
     maxFlow = calcFluxoMaximo()
     tempo = calcTempoEvacucao()
-    return render(request, 'index4.html', {'maxFlow': maxFlow}, {'tempo': tempo})
+    pop = (maxFlow * 6) * tempo
+    context = {'maxFlow': maxFlow, 'tempo': tempo, 'pop': pop}
+    return render(request, 'index4.html', context)
