@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <table class="table">
+            <table class="table mt-5">
                 <thead>
                 <tr>
                     <th scope="col">ID da Porta</th>
@@ -32,13 +32,13 @@
                 </thead>
                 <tbody>
                 {% for portas in portas %}
-                    <tr>
-                        <th scope="row">{{ portas.id }}</th>
-                        <td>{{ portas.conexao.ambienteAnterior.nome }}</td>
-                        <td>{{ portas.conexao.ambientePosterior.nome }}</td>
-                        <td>{{ portas.largura }}</td>
-                    </tr>
-                {% endfor %}
+                        <tr>
+                            <th scope="row">{{ portas.id }}</th>
+                            <td>{{ portas.conexao.ambienteAnterior  }}</td>
+                            <td>{{ portas.conexao.ambientePosterior }}</td>
+                            <td>{{ portas.largura }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

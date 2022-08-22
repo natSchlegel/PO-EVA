@@ -40,6 +40,11 @@ def adicionarConexao(request):
         if formC.is_valid():
             formC.save()
 
+def mostrarPortas(request):
+
+    portas = Porta.objects.all().prefetch_related('conexao')
+    context = {'portas': portas}
+    return render(request, 'index3.html', context)
 
 def calcFluxoMaximo():
     nos = []
