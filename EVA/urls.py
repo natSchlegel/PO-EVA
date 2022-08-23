@@ -19,8 +19,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('eva/home', views.adicionarAmbientes, name='adicionarAmbiente'),
+    #path('admin/', admin.site.urls),
+    path('', views.adicionarAmbientes, name='adicionarAmbiente'),
     path('eva/portas', views.adicionarPortas, name='adicionarPortas'),
     path('eva/fluxo', views.fluxoMaximo, name='fluxoMaximo')
 

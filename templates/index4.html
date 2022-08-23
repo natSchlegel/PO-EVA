@@ -28,6 +28,11 @@
                 <h5>Com um fluxo maximo de {{ maxFlow }} e uma população de {{ pop }}, levaria
                 {{ tempo }} minutos para evacuar todo mundo.</h5>
             </div>
+            <div>
+                <button  name="Voltar" class="btn btn-primary mt-4"><a href="{% url 'adicionarPortas' %}" style="text-decoration: none; color:white">Voltar</a></button>
+            <button  name="Próxima página" class="btn btn-primary mt-4"><a href="{% url 'adicionarAmbiente' %}" style="text-decoration: none; color:white">Home</a></button>
+            </div>
+
         </div>
     </div>
 </div>
